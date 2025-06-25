@@ -9,7 +9,7 @@
 #
 # {include:file:README.md}
 #
-# @see https://github.com/merrilymeredith/rb-compress-lzw
+# @see https://github.com/mariduv/rb-compress-lzw
 # @see https://en.wikipedia.org/wiki/Lempel–Ziv–Welch
 module LZW
 

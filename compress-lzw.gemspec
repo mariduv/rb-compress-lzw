@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = [ "Meredith Howard"  ]
   s.email       = [ 'mhoward@cpan.org' ]
   s.license     = 'MIT'
-  s.homepage    = 'https://github.com/merrilymeredith/rb-compress-lzw'
+  s.homepage    = 'https://github.com/mariduv/rb-compress-lzw'
 
   s.files       = `git ls-files -z -- lib/* README.md LICENSE compress-lzw.gemspec`.split("\x0")
 

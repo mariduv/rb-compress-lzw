@@ -1,8 +1,8 @@
 # compress-lzw
 
-[API Documentation](https://merrilymeredith.github.io/rb-compress-lzw/)
+[API Documentation](https://mariduv.github.io/rb-compress-lzw/)
 
-[![CircleCI](https://circleci.com/gh/merrilymeredith/rb-compress-lzw.svg?style=svg)](https://circleci.com/gh/merrilymeredith/rb-compress-lzw)
+[![CircleCI](https://circleci.com/gh/mariduv/rb-compress-lzw.svg?style=svg)](https://circleci.com/gh/mariduv/rb-compress-lzw)
 
 ## About
 
@@ -20,7 +20,7 @@ bits at a time and scaling up as the codes increase to 16 bits.
 
 To get right to work, check out the [LZW::Simple][] class.
 
-[LZW::Simple]: https://merrilymeredith.github.io/rb-compress-lzw/LZW/Simple.html
+[LZW::Simple]: https://mariduv.github.io/rb-compress-lzw/LZW/Simple.html
 
 ## TODO
 
