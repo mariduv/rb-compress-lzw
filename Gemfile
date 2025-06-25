@@ -1,4 +1,8 @@
-source 'https://rubygems.org'
-gemspec
+source "https://rubygems.org"
 
-gem 'yard', require: false
+group :development do
+  gem "standard", "~> 1.50", require: false
+  gem "yard", "~> 0.9.37", require: false
+  gem "rake", "~> 13.3", require: false
+  gem "minitest", "~> 5.25", require: false
+end
