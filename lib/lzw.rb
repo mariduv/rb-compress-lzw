@@ -98,7 +98,7 @@ module LZW
       @last_ratio    = nil
       @bytes_in      = 0
 
-      seen           = ''
+      seen           = +''
       @next_increase = 2**@code_size
 
       data.each_byte do |byte|
@@ -311,7 +311,7 @@ module LZW
     # Verify the two magic bytes at the beginning of the stream and read bit
     # and block data from the third.
     def read_magic(data)
-      magic = ''
+      magic = +''
       (0 .. 2).each do |byte|
         magic << data.get_varint(byte * 8, 8).chr
       end
