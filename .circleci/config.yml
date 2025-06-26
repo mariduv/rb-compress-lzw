@@ -2,7 +2,7 @@ version: "2.1"
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.3
+      - image: cimg/ruby:3.4
     steps:
       - checkout
       - run: bundle install
@@ -13,7 +13,7 @@ jobs:
           paths: doc
   docs-publish:
     docker:
-      - image: node:8
+      - image: node:current
     steps:
       - checkout
       - attach_workspace:

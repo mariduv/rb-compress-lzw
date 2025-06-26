@@ -24,8 +24,11 @@ To get right to work, check out the [LZW][] module.
 
 ## TODO
 
+* Convert from circleci to github actions
+
 * Code isn't the most efficient, but get impl right first. Buffering with a
 queue of 8 codes makes the packed code always fit an octet boundary.
+
 * Add a set of tests that tries to find compress binaries installed to use
 for compatibility tests.
 
