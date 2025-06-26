@@ -10,11 +10,11 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "README";
   relpath = '';
 </script>
@@ -60,9 +60,9 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-compress-lzw">compress-lzw</h1>
 
-<p><a href="https://merrilymeredith.github.io/rb-compress-lzw/">API Documentation</a></p>
+<p><a href="https://mariduv.github.io/rb-compress-lzw/">API Documentation</a></p>
 
-<p><a href="https://circleci.com/gh/merrilymeredith/rb-compress-lzw"><img src="https://circleci.com/gh/merrilymeredith/rb-compress-lzw.svg?style=svg"></a></p>
+<p><a href="https://circleci.com/gh/mariduv/rb-compress-lzw"><img src="https://circleci.com/gh/mariduv/rb-compress-lzw.svg?style=svg"></a></p>
 
 <h2 id="label-About">About</h2>
 
@@ -72,20 +72,22 @@
 
 <p>LZW is notable in two ways: it is dictionary-based compression but does not need to pass that dictionary within its files, instead decompression relies on progressively building a dictionary in the same way as the compressor. It also works outside the boundaries of bytes, writing its dictionary codes 9 bits at a time and scaling up as the codes increase to 16 bits.</p>
 
-<p>To get right to work, check out the <a href="https://merrilymeredith.github.io/rb-compress-lzw/LZW/Simple.html">LZW::Simple</a> class.</p>
+<p>To get right to work, check out the <a href="https://mariduv.github.io/rb-compress-lzw/LZW.html">LZW</a> module.</p>
 
 <h2 id="label-TODO">TODO</h2>
 <ul><li>
-<p>Code isn&#39;t the most efficient, but get impl right first. Buffering with a queue of 8 codes makes the packed code always fit an octet boundary.</p>
+<p>Convert from circleci to github actions</p>
+</li><li>
+<p>Code isn't the most efficient, but get impl right first. Buffering with a queue of 8 codes makes the packed code always fit an octet boundary.</p>
 </li><li>
 <p>Add a set of tests that tries to find compress binaries installed to use for compatibility tests.</p>
 </li></ul>
 </div></div>
 
       <div id="footer">
-  Generated on Thu May  9 07:28:33 2019 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.19 (ruby-2.6.3).
+  Generated on Thu Jun 26 02:11:19 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
 </div>
 
     </div>

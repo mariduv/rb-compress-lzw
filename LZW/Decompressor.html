@@ -10,11 +10,11 @@
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "LZW::Decompressor";
   relpath = '../';
 </script>
@@ -87,6 +87,11 @@
   
   
   
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="Constants.html" title="LZW::Constants (module)">Constants</a></span></dd>
+  </dl>
+  
   
 
   
@@ -94,7 +99,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/lzw.rb</dd>
+    <dd>lib/lzw/decompressor.rb</dd>
   </dl>
   
 </div>
@@ -112,6 +117,12 @@
 
 </div>
 
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="Constants.html" title="LZW::Constants (module)">Constants</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Constants.html#BL_INIT_CODE-constant" title="LZW::Constants::BL_INIT_CODE (constant)">Constants::BL_INIT_CODE</a></span>, <span class='object_link'><a href="Constants.html#CHECKPOINT_BITS-constant" title="LZW::Constants::CHECKPOINT_BITS (constant)">Constants::CHECKPOINT_BITS</a></span>, <span class='object_link'><a href="Constants.html#INIT_CODE_SIZE-constant" title="LZW::Constants::INIT_CODE_SIZE (constant)">Constants::INIT_CODE_SIZE</a></span>, <span class='object_link'><a href="Constants.html#MAGIC-constant" title="LZW::Constants::MAGIC (constant)">Constants::MAGIC</a></span>, <span class='object_link'><a href="Constants.html#MASK_BITS-constant" title="LZW::Constants::MASK_BITS (constant)">Constants::MASK_BITS</a></span>, <span class='object_link'><a href="Constants.html#MASK_BLOCK-constant" title="LZW::Constants::MASK_BLOCK (constant)">Constants::MASK_BLOCK</a></span>, <span class='object_link'><a href="Constants.html#NR_INIT_CODE-constant" title="LZW::Constants::NR_INIT_CODE (constant)">Constants::NR_INIT_CODE</a></span>, <span class='object_link'><a href="Constants.html#RESET_CODE-constant" title="LZW::Constants::RESET_CODE (constant)">Constants::RESET_CODE</a></span></p>
 
 
 
@@ -177,6 +188,12 @@
   
 
 
+  
+  
+  
+  
+  
+  
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -259,72 +276,72 @@
       <pre class="lines">
 
 
-231
-232
-233
-234
-235
-236
-237
-238
-239
-240
-241
-242
-243
-244
-245
-246
-247
-248
-249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288</pre>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'lib/lzw/decompressor.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_decompress'>decompress</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_reset'>reset</span>
 
-  <span class='ivar'>@data</span>     <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../LZW.html" title="LZW (module)">LZW</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="BitBuf.html#initialize-instance_method" title="LZW::BitBuf#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>field:</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='ivar'>@data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../LZW.html" title="LZW (module)">LZW</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="BitBuf.html#initialize-instance_method" title="LZW::BitBuf#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>field:</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='ivar'>@data_pos</span> <span class='op'>=</span> <span class='int'>0</span>
 
   <span class='id identifier rubyid_read_magic'>read_magic</span><span class='lparen'>(</span><span class='ivar'>@data</span><span class='rparen'>)</span>
@@ -337,11 +354,11 @@
   <span class='id identifier rubyid_next_increase'>next_increase</span> <span class='op'>=</span> <span class='int'>2</span><span class='op'>**</span><span class='ivar'>@code_size</span>
 
   <span class='id identifier rubyid_seen'>seen</span> <span class='op'>=</span> <span class='id identifier rubyid_read_code'>read_code</span>
-  <span class='ivar'>@buf</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@str_table</span><span class='lbracket'>[</span> <span class='id identifier rubyid_seen'>seen</span> <span class='rbracket'>]</span>
+  <span class='ivar'>@buf</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='id identifier rubyid_seen'>seen</span><span class='rbracket'>]</span>
 
   <span class='kw'>while</span> <span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span> <span class='op'>=</span> <span class='id identifier rubyid_read_code'>read_code</span><span class='rparen'>)</span>
 
-    <span class='kw'>if</span> <span class='ivar'>@block_mode</span> <span class='kw'>and</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='const'>RESET_CODE</span>
+    <span class='kw'>if</span> <span class='ivar'>@block_mode</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Constants.html#RESET_CODE-constant" title="LZW::Constants::RESET_CODE (constant)">RESET_CODE</a></span></span>
       <span class='id identifier rubyid_str_reset'>str_reset</span>
 
       <span class='id identifier rubyid_seen'>seen</span> <span class='op'>=</span> <span class='id identifier rubyid_read_code'>read_code</span>
@@ -351,17 +368,17 @@
 
     <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_word'>word</span> <span class='op'>=</span> <span class='ivar'>@str_table</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='ivar'>@buf</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_word'>word</span>
-      
-      <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='ivar'>@next_code</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='id identifier rubyid_seen'>seen</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_word'>word</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>1</span><span class='rbracket'>]</span>
+
+      <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='ivar'>@next_code</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='id identifier rubyid_seen'>seen</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_word'>word</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span>
 
     <span class='kw'>elsif</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='ivar'>@next_code</span>
       <span class='id identifier rubyid_word'>word</span> <span class='op'>=</span> <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='id identifier rubyid_seen'>seen</span><span class='rbracket'>]</span>
-      <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='id identifier rubyid_code'>code</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_word'>word</span> <span class='op'>+</span> <span class='id identifier rubyid_word'>word</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='id identifier rubyid_code'>code</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_word'>word</span> <span class='op'>+</span> <span class='id identifier rubyid_word'>word</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span>
 
       <span class='ivar'>@buf</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@str_table</span><span class='lbracket'>[</span><span class='id identifier rubyid_code'>code</span><span class='rbracket'>]</span>
 
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="../LZW.html#InputStreamError-constant" title="LZW::InputStreamError (constant)">InputStreamError</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_code'>code</span><span class='embexpr_end'>}</span><span class='tstring_content'> != </span><span class='embexpr_beg'>#{</span><span class='ivar'>@next_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>) input may be corrupt at bit </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data_pos'>data_pos</span> <span class='op'>-</span> <span class='ivar'>@code_size</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../LZW.html" title="LZW (module)">LZW</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../LZW.html#InputStreamError-constant" title="LZW::InputStreamError (constant)">InputStreamError</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_code'>code</span><span class='embexpr_end'>}</span><span class='tstring_content'> != </span><span class='embexpr_beg'>#{</span><span class='ivar'>@next_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>) input may be corrupt at bit </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data_pos'>data_pos</span> <span class='op'>-</span> <span class='ivar'>@code_size</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_seen'>seen</span> <span class='op'>=</span> <span class='id identifier rubyid_code'>code</span>
@@ -369,7 +386,7 @@
 
     <span class='kw'>if</span> <span class='ivar'>@next_code</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_next_increase'>next_increase</span>
       <span class='kw'>if</span> <span class='ivar'>@code_size</span> <span class='op'>&lt;</span> <span class='ivar'>@max_code_size</span>
-        <span class='ivar'>@code_size</span>    <span class='op'>+=</span> <span class='int'>1</span>
+        <span class='ivar'>@code_size</span> <span class='op'>+=</span> <span class='int'>1</span>
         <span class='id identifier rubyid_next_increase'>next_increase</span> <span class='op'>*=</span> <span class='int'>2</span>
         <span class='comment'># warn &quot;decode up to #{@code_size} for next #{@next_code} max #{@max_code_size} at #{data_pos}&quot;
 </span>      <span class='kw'>end</span>
@@ -396,7 +413,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Reset the state of the decompressor. This is run at the beginning of <span class='object_link'><a href="#decompress-instance_method" title="LZW::Decompressor#decompress (method)">#decompress</a></span>, so it&#39;s not necessary for reuse of an instance, but this allows wiping the string code table and buffer from the object instance.</p>
+<p>Reset the state of the decompressor. This is run at the beginning of <span class='object_link'><a href="#decompress-instance_method" title="LZW::Decompressor#decompress (method)">#decompress</a></span>, so it’s not necessary for reuse of an instance, but this allows wiping the string code table and buffer from the object instance.</p>
 
 
   </div>
@@ -410,16 +427,16 @@
       <pre class="lines">
 
 
-293
-294
-295
-296</pre>
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 293</span>
+      <pre class="code"><span class="info file"># File 'lib/lzw/decompressor.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span>
-  <span class='ivar'>@buf</span>       <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_b'>b</span>
+  <span class='ivar'>@buf</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_b'>b</span>
   <span class='ivar'>@str_table</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -432,9 +449,9 @@
 </div>
 
       <div id="footer">
-  Generated on Thu May  9 07:28:33 2019 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.19 (ruby-2.6.3).
+  Generated on Thu Jun 26 02:11:19 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
 </div>
 
     </div>

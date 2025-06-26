@@ -10,11 +10,11 @@
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "LZW::Compressor";
   relpath = '../';
 </script>
@@ -87,6 +87,11 @@
   
   
   
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="Constants.html" title="LZW::Constants (module)">Constants</a></span></dd>
+  </dl>
+  
   
 
   
@@ -94,7 +99,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/lzw.rb</dd>
+    <dd>lib/lzw/compressor.rb</dd>
   </dl>
   
 </div>
@@ -112,6 +117,12 @@
 
 </div>
 
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="Constants.html" title="LZW::Constants (module)">Constants</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Constants.html#BL_INIT_CODE-constant" title="LZW::Constants::BL_INIT_CODE (constant)">LZW::Constants::BL_INIT_CODE</a></span>, <span class='object_link'><a href="Constants.html#CHECKPOINT_BITS-constant" title="LZW::Constants::CHECKPOINT_BITS (constant)">LZW::Constants::CHECKPOINT_BITS</a></span>, <span class='object_link'><a href="Constants.html#INIT_CODE_SIZE-constant" title="LZW::Constants::INIT_CODE_SIZE (constant)">LZW::Constants::INIT_CODE_SIZE</a></span>, <span class='object_link'><a href="Constants.html#MAGIC-constant" title="LZW::Constants::MAGIC (constant)">LZW::Constants::MAGIC</a></span>, <span class='object_link'><a href="Constants.html#MASK_BITS-constant" title="LZW::Constants::MASK_BITS (constant)">LZW::Constants::MASK_BITS</a></span>, <span class='object_link'><a href="Constants.html#MASK_BLOCK-constant" title="LZW::Constants::MASK_BLOCK (constant)">LZW::Constants::MASK_BLOCK</a></span>, <span class='object_link'><a href="Constants.html#NR_INIT_CODE-constant" title="LZW::Constants::NR_INIT_CODE (constant)">LZW::Constants::NR_INIT_CODE</a></span>, <span class='object_link'><a href="Constants.html#RESET_CODE-constant" title="LZW::Constants::RESET_CODE (constant)">LZW::Constants::RESET_CODE</a></span></p>
 
 
   <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
@@ -265,7 +276,13 @@
     </ul>
   
 
-<div id="constructor_details" class="method_details_list">
+
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
@@ -297,6 +314,8 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -312,6 +331,8 @@
       
         <span class='type'>(<tt>Fixnum</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>16</tt>)</em>
       
       
         &mdash;
@@ -330,31 +351,31 @@
       <pre class="lines">
 
 
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86</pre>
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/lzw/compressor.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span>
-  <span class='label'>block_mode:</span>     <span class='kw'>true</span><span class='comma'>,</span>
-  <span class='label'>max_code_size:</span>  <span class='int'>16</span>
+  <span class='label'>block_mode:</span> <span class='kw'>true</span><span class='comma'>,</span>
+  <span class='label'>max_code_size:</span> <span class='int'>16</span>
 <span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='id identifier rubyid_max_code_size'>max_code_size</span><span class='period'>.</span><span class='id identifier rubyid_between?'>between?</span><span class='lparen'>(</span><span class='const'>INIT_CODE_SIZE</span><span class='comma'>,</span><span class='int'>31</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_fail'>fail</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>max_code_size must be between </span><span class='embexpr_beg'>#{</span><span class='const'>INIT_CODE_SIZE</span><span class='embexpr_end'>}</span><span class='tstring_content'> and 31</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_max_code_size'>max_code_size</span><span class='period'>.</span><span class='id identifier rubyid_between?'>between?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Constants.html#INIT_CODE_SIZE-constant" title="LZW::Constants::INIT_CODE_SIZE (constant)">INIT_CODE_SIZE</a></span></span><span class='comma'>,</span> <span class='int'>31</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fail'>fail</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>max_code_size must be between </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Constants.html#INIT_CODE_SIZE-constant" title="LZW::Constants::INIT_CODE_SIZE (constant)">INIT_CODE_SIZE</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> and 31</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
-  <span class='ivar'>@block_mode</span>     <span class='op'>=</span> <span class='id identifier rubyid_block_mode'>block_mode</span>
-  <span class='ivar'>@max_code_size</span>  <span class='op'>=</span> <span class='id identifier rubyid_max_code_size'>max_code_size</span>
+  <span class='ivar'>@block_mode</span> <span class='op'>=</span> <span class='id identifier rubyid_block_mode'>block_mode</span>
+  <span class='ivar'>@max_code_size</span> <span class='op'>=</span> <span class='id identifier rubyid_max_code_size'>max_code_size</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -409,12 +430,12 @@
       <pre class="lines">
 
 
-62
-63
-64</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/lzw/compressor.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_block_mode'>block_mode</span>
   <span class='ivar'>@block_mode</span>
@@ -467,12 +488,12 @@
       <pre class="lines">
 
 
-70
-71
-72</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/lzw/compressor.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max_code_size'>max_code_size</span>
   <span class='ivar'>@max_code_size</span>
@@ -548,55 +569,55 @@
       <pre class="lines">
 
 
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124</pre>
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/lzw/compressor.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_compress'>compress</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_reset'>reset</span>
 
   <span class='comment'># In block mode, we track compression ratio
-</span>  <span class='ivar'>@checkpoint</span>    <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='ivar'>@last_ratio</span>    <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='ivar'>@bytes_in</span>      <span class='op'>=</span> <span class='int'>0</span>
+</span>  <span class='ivar'>@checkpoint</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@last_ratio</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@bytes_in</span> <span class='op'>=</span> <span class='int'>0</span>
 
-  <span class='id identifier rubyid_seen'>seen</span>           <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_seen'>seen</span> <span class='op'>=</span> <span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='ivar'>@next_increase</span> <span class='op'>=</span> <span class='int'>2</span><span class='op'>**</span><span class='ivar'>@code_size</span>
 
   <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_each_byte'>each_byte</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_byte'>byte</span><span class='op'>|</span>
-    <span class='id identifier rubyid_char'>char</span>       <span class='op'>=</span> <span class='id identifier rubyid_byte'>byte</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span>
+    <span class='id identifier rubyid_char'>char</span> <span class='op'>=</span> <span class='id identifier rubyid_byte'>byte</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span>
     <span class='ivar'>@bytes_in</span> <span class='op'>+=</span> <span class='int'>1</span>
 
     <span class='kw'>if</span> <span class='ivar'>@code_table</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_seen'>seen</span> <span class='op'>+</span> <span class='id identifier rubyid_char'>char</span><span class='rparen'>)</span>
@@ -633,7 +654,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Reset compressor state.  This is run at the beginning of <span class='object_link'><a href="#compress-instance_method" title="LZW::Compressor#compress (method)">#compress</a></span>, so it&#39;s not necessary for repeated compression, but this allows wiping the last code table and buffer from the object instance.</p>
+<p>Reset compressor state.  This is run at the beginning of <span class='object_link'><a href="#compress-instance_method" title="LZW::Compressor#compress (method)">#compress</a></span>, so it’s not necessary for repeated compression, but this allows wiping the last code table and buffer from the object instance.</p>
 
 
   </div>
@@ -647,30 +668,30 @@
       <pre class="lines">
 
 
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140</pre>
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/lzw/compressor.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span>
-  <span class='ivar'>@buf</span>     <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../LZW.html" title="LZW (module)">LZW</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="BitBuf.html#initialize-instance_method" title="LZW::BitBuf#initialize (method)">new</a></span></span>
+  <span class='ivar'>@buf</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../LZW.html" title="LZW (module)">LZW</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="BitBuf.html#initialize-instance_method" title="LZW::BitBuf#initialize (method)">new</a></span></span>
   <span class='ivar'>@buf_pos</span> <span class='op'>=</span> <span class='int'>0</span>
-  
+
   <span class='comment'># begin with the magic bytes
-</span>  <span class='id identifier rubyid_magic'>magic</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each_byte'>each_byte</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span>
+</span>  <span class='id identifier rubyid_magic'>magic</span><span class='period'>.</span><span class='id identifier rubyid_each_byte'>each_byte</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span>
     <span class='ivar'>@buf</span><span class='period'>.</span><span class='id identifier rubyid_set_varint'>set_varint</span><span class='lparen'>(</span><span class='ivar'>@buf_pos</span><span class='comma'>,</span> <span class='int'>8</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_ord'>ord</span><span class='rparen'>)</span>
-    <span class='ivar'>@buf_pos</span> <span class='op'>+=</span> <span class='int'>8</span> 
+    <span class='ivar'>@buf_pos</span> <span class='op'>+=</span> <span class='int'>8</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_code_reset'>code_reset</span>
@@ -685,9 +706,9 @@
 </div>
 
       <div id="footer">
-  Generated on Thu May  9 07:28:33 2019 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.19 (ruby-2.6.3).
+  Generated on Thu Jun 26 02:11:19 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
 </div>
 
     </div>

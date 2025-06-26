@@ -10,11 +10,11 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "LZW";
   relpath = '';
 </script>
@@ -69,16 +69,28 @@
 
   
   
+  <dl>
+      <dt>Extended by:</dt>
+      <dd><span class='object_link'><a href="" title="LZW (module)">LZW</a></span></dd>
+  </dl>
+  
   
   
   
 
+  
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="" title="LZW (module)">LZW</a></span></dd>
+  </dl>
   
 
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/lzw.rb</dd>
+    <dd>lib/lzw.rb<span class="defines">,<br />
+  lib/lzw/version.rb</span>
+</dd>
   </dl>
   
 </div>
@@ -88,27 +100,27 @@
     
 <p>Scaling LZW, like Unix compress(1)</p>
 
-<p>The LZW module offers:</p>
-<dl class="rdoc-list label-list"><dt><span class='object_link'><a href="LZW/Simple.html" title="LZW::Simple (class)">Simple</a></span>
+<p>The LZW gem offers:</p>
+<dl class="rdoc-list label-list"><dt><span class='object_link'><a href="" title="LZW (module)">LZW</a></span></dt>
 <dd>
-<p>Straightforward compress/decompress calls in one place</p>
-</dd><dt><span class='object_link'><a href="LZW/Compressor.html" title="LZW::Compressor (class)">Compressor</a></span>
+<p>Simple functional interface</p>
+</dd><dt><span class='object_link'><a href="LZW/Compressor.html" title="LZW::Compressor (class)">Compressor</a></span></dt>
 <dd>
 <p>LZW compressor with more fine-grained controls</p>
-</dd><dt><span class='object_link'><a href="LZW/Decompressor.html" title="LZW::Decompressor (class)">Decompressor</a></span>
+</dd><dt><span class='object_link'><a href="LZW/Decompressor.html" title="LZW::Decompressor (class)">Decompressor</a></span></dt>
 <dd>
 <p>LZW decompressor in the same vein</p>
-</dd><dt><span class='object_link'><a href="LZW/BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span>
+</dd><dt><span class='object_link'><a href="LZW/BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span></dt>
 <dd>
-<p>An abstraction for modifying a String bitwise and  with unsigned integers at arbitrary offsets and sizes.</p>
+<p>A String-backed buffer allowing bit-level operations</p>
 </dd></dl>
 
 <p>
 <h1 id="label-compress-lzw">compress-lzw</h1>
 
-<p><a href="https://merrilymeredith.github.io/rb-compress-lzw/">API Documentation</a></p>
+<p><a href="https://mariduv.github.io/rb-compress-lzw/">API Documentation</a></p>
 
-<p><a href="https://circleci.com/gh/merrilymeredith/rb-compress-lzw"><img src="https://circleci.com/gh/merrilymeredith/rb-compress-lzw.svg?style=svg"></a></p>
+<p><a href="https://circleci.com/gh/mariduv/rb-compress-lzw"><img src="https://circleci.com/gh/mariduv/rb-compress-lzw.svg?style=svg"></a></p>
 
 <h2 id="label-About">About</h2>
 
@@ -118,11 +130,13 @@
 
 <p>LZW is notable in two ways: it is dictionary-based compression but does not need to pass that dictionary within its files, instead decompression relies on progressively building a dictionary in the same way as the compressor. It also works outside the boundaries of bytes, writing its dictionary codes 9 bits at a time and scaling up as the codes increase to 16 bits.</p>
 
-<p>To get right to work, check out the <a href="https://merrilymeredith.github.io/rb-compress-lzw/LZW/Simple.html">LZW::Simple</a> class.</p>
+<p>To get right to work, check out the <a href="https://mariduv.github.io/rb-compress-lzw/LZW.html">LZW</a> module.</p>
 
 <h2 id="label-TODO">TODO</h2>
 <ul><li>
-<p>Code isn&#39;t the most efficient, but get impl right first. Buffering with a queue of 8 codes makes the packed code always fit an octet boundary.</p>
+<p>Convert from circleci to github actions</p>
+</li><li>
+<p>Code isn't the most efficient, but get impl right first. Buffering with a queue of 8 codes makes the packed code always fit an octet boundary.</p>
 </li><li>
 <p>Add a set of tests that tries to find compress binaries installed to use for compatibility tests.</p>
 </li></ul>
@@ -137,7 +151,7 @@
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li><a href="https://github.com/merrilymeredith/rb-compress-lzw" target="_parent" title="https://github.com/merrilymeredith/rb-compress-lzw">https://github.com/merrilymeredith/rb-compress-lzw</a></li>
+      <li><a href="https://github.com/mariduv/rb-compress-lzw" target="_parent" title="https://github.com/mariduv/rb-compress-lzw">https://github.com/mariduv/rb-compress-lzw</a></li>
     
       <li><a href="https://en.wikipedia.org/wiki/Lempel–Ziv–Welch" target="_parent" title="https://en.wikipedia.org/wiki/Lempel–Ziv–Welch">https://en.wikipedia.org/wiki/Lempel–Ziv–Welch</a></li>
     
@@ -147,9 +161,11 @@
 <p class="children">
   
     
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="LZW/Constants.html" title="LZW::Constants (module)">Constants</a></span>
+    
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="LZW/BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span>, <span class='object_link'><a href="LZW/Compressor.html" title="LZW::Compressor (class)">Compressor</a></span>, <span class='object_link'><a href="LZW/Decompressor.html" title="LZW::Decompressor (class)">Decompressor</a></span>, <span class='object_link'><a href="LZW/Simple.html" title="LZW::Simple (class)">Simple</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="LZW/BitBuf.html" title="LZW::BitBuf (class)">BitBuf</a></span>, <span class='object_link'><a href="LZW/Compressor.html" title="LZW::Compressor (class)">Compressor</a></span>, <span class='object_link'><a href="LZW/Decompressor.html" title="LZW::Decompressor (class)">Decompressor</a></span>
     
   
 </p>
@@ -161,22 +177,6 @@
     </h2>
 
     <dl class="constants">
-      
-        <dt id="VERSION-constant" class="">VERSION =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>compress-lzw gem version</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.0.1</span><span class='tstring_end'>&#39;</span></span></pre></dd>
       
         <dt id="InputStreamError-constant" class="">InputStreamError =
           <div class="docstring">
@@ -194,6 +194,11 @@
         </dt>
         <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>RuntimeError</span><span class='rparen'>)</span></pre></dd>
       
+        <dt id="VERSION-constant" class="">VERSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.0.2</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
     </dl>
   
 
@@ -203,14 +208,255 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
 
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compress-instance_method" title="#compress (instance method)">#<strong>compress</strong>(data)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Compress input with defaults.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#decompress-instance_method" title="#decompress (instance method)">#<strong>decompress</strong>(data)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Decompress input with defaults.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="compress-instance_method">
+  
+    #<strong>compress</strong>(data)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Compress input with defaults</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt>#each_byte</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>data to be compressed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>LZW compressed data</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compress'>compress</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="LZW (module)">LZW</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="LZW/Compressor.html" title="LZW::Compressor (class)">Compressor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="LZW/Compressor.html#initialize-instance_method" title="LZW::Compressor#initialize (method)">new</a></span></span><span class='period'>.</span><span class='id identifier rubyid_compress'><span class='object_link'><a href="LZW/Compressor.html#compress-instance_method" title="LZW::Compressor#compress (method)">compress</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="decompress-instance_method">
+  
+    #<strong>decompress</strong>(data)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Decompress input with defaults</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>compressed data to be decompressed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>decompressed data</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="#InputStreamError-constant" title="LZW::InputStreamError (constant)">LZW::InputStreamError</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an error in the compressed stream</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/lzw.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_decompress'>decompress</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="LZW (module)">LZW</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="LZW/Decompressor.html" title="LZW::Decompressor (class)">Decompressor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_decompress'><span class='object_link'><a href="LZW/Decompressor.html#decompress-instance_method" title="LZW::Decompressor#decompress (method)">decompress</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Thu May  9 07:28:33 2019 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.19 (ruby-2.6.3).
+  Generated on Thu Jun 26 02:11:19 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
 </div>
 
     </div>
