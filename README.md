@@ -18,9 +18,9 @@ on progressively building a dictionary in the same way as the compressor. It
 also works outside the boundaries of bytes, writing its dictionary codes 9
 bits at a time and scaling up as the codes increase to 16 bits.
 
-To get right to work, check out the [LZW::Simple][] class.
+To get right to work, check out the [LZW][] module.
 
-[LZW::Simple]: https://mariduv.github.io/rb-compress-lzw/LZW/Simple.html
+[LZW]: https://mariduv.github.io/rb-compress-lzw/LZW.html
 
 ## TODO
 
