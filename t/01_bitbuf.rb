@@ -69,7 +69,7 @@ describe LZW::BitBuf do
   end
 
   it "returns nil when trying to get_varint beyond the defined length" do
-    _(LZW::BitBuf.new.get_varint(32)).must_be_nil
+    _(LZW::BitBuf.new.get_varint(32, 8)).must_be_nil
   end
 
   it "always treats subscript as LSB0" do

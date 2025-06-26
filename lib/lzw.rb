@@ -4,7 +4,7 @@
 # [{LZW::Simple}]       Straightforward compress/decompress calls in one place
 # [{LZW::Compressor}]   LZW compressor with more fine-grained controls
 # [{LZW::Decompressor}] LZW decompressor in the same vein
-# [{LZW::BitBuf}]       An abstraction for modifying a String bitwise and 
+# [{LZW::BitBuf}]       An abstraction for modifying a String bitwise and
 #                       with unsigned integers at arbitrary offsets and sizes.
 #
 # {include:file:README.md}
@@ -12,27 +12,24 @@
 # @see https://github.com/mariduv/rb-compress-lzw
 # @see https://en.wikipedia.org/wiki/Lempel–Ziv–Welch
 module LZW
-
   # compress-lzw gem version
-  VERSION         = '0.0.1'
+  VERSION = "0.0.1"
 
-  MAGIC           = "\037\235".b      # static magic bytes
-  MASK_BITS       = 0x1f              # mask for 3rd byte for max_code_size
-  MASK_BLOCK      = 0x80              # mask for 3rd byte for block_mode
-  RESET_CODE      = 256               # block mode code to reset code table
-  BL_INIT_CODE    = 257               # block mode first available code
-  NR_INIT_CODE    = 256               # normal mode first available code
-  INIT_CODE_SIZE  = 9                 # initial code size beyond the header
+  MAGIC = "\037\235".b      # static magic bytes
+  MASK_BITS = 0x1f              # mask for 3rd byte for max_code_size
+  MASK_BLOCK = 0x80              # mask for 3rd byte for block_mode
+  RESET_CODE = 256               # block mode code to reset code table
+  BL_INIT_CODE = 257               # block mode first available code
+  NR_INIT_CODE = 256               # normal mode first available code
+  INIT_CODE_SIZE = 9                 # initial code size beyond the header
   CHECKPOINT_BITS = 10_000            # block mode check for falling compression
 
   private_constant :MAGIC, :MASK_BITS, :MASK_BLOCK
   private_constant :RESET_CODE, :BL_INIT_CODE, :NR_INIT_CODE
   private_constant :INIT_CODE_SIZE, :CHECKPOINT_BITS
 
-
   # Simplest-use LZW compressor and decompressor
   class Simple
-
     # Compress input with defaults
     #
     # @param data [#each_byte] data to be compressed
@@ -50,10 +47,9 @@ module LZW
       LZW::Decompressor.new.decompress(data)
     end
   end
-  
+
   # Scaling LZW data compressor with some configurables
   class Compressor
-
     # If true, enables compression in block mode. Default true.
     #
     # After reaching {#max_code_size} bits per code, the compression dictionary
@@ -70,19 +66,19 @@ module LZW
     attr_reader :max_code_size
 
     # LZW::Compressors work fine with the default settings.
-    # 
+    #
     # @param block_mode [Boolean] (see {#block_mode})
     # @param max_code_size [Fixnum] (see {#max_code_size})
     def initialize(
-      block_mode:     true,
-      max_code_size:  16
+      block_mode: true,
+      max_code_size: 16
     )
-      unless max_code_size.between?(INIT_CODE_SIZE,31)
+      unless max_code_size.between?(INIT_CODE_SIZE, 31)
         fail ArgumentError, "max_code_size must be between #{INIT_CODE_SIZE} and 31"
       end
 
-      @block_mode     = block_mode
-      @max_code_size  = max_code_size
+      @block_mode = block_mode
+      @max_code_size = max_code_size
     end
 
     # Given a String(ish) of data, return the LZW-compressed result as another
@@ -94,15 +90,15 @@ module LZW
       reset
 
       # In block mode, we track compression ratio
-      @checkpoint    = nil
-      @last_ratio    = nil
-      @bytes_in      = 0
+      @checkpoint = nil
+      @last_ratio = nil
+      @bytes_in = 0
 
-      seen           = +''
+      seen = +""
       @next_increase = 2**@code_size
 
       data.each_byte do |byte|
-        char       = byte.chr
+        char = byte.chr
         @bytes_in += 1
 
         if @code_table.has_key?(seen + char)
@@ -127,13 +123,13 @@ module LZW
     # it's not necessary for repeated compression, but this allows wiping the
     # last code table and buffer from the object instance.
     def reset
-      @buf     = LZW::BitBuf.new
+      @buf = LZW::BitBuf.new
       @buf_pos = 0
-      
+
       # begin with the magic bytes
-      magic().each_byte do |b|
+      magic.each_byte do |b|
         @buf.set_varint(@buf_pos, 8, b.ord)
-        @buf_pos += 8 
+        @buf_pos += 8
       end
 
       code_reset
@@ -146,13 +142,13 @@ module LZW
     # stream (block mode).
     def code_reset
       @code_table = {}
-      (0 .. 255).each do |i|
+      (0..255).each do |i|
         @code_table[i.chr] = i
       end
 
-      @at_max_code   = 0
-      @code_size     = INIT_CODE_SIZE
-      @next_code     = @block_mode ? BL_INIT_CODE : NR_INIT_CODE
+      @at_max_code = 0
+      @code_size = INIT_CODE_SIZE
+      @next_code = @block_mode ? BL_INIT_CODE : NR_INIT_CODE
       @next_increase = 2**@code_size
     end
 
@@ -169,7 +165,7 @@ module LZW
     def new_code(word)
       if @next_code >= @next_increase
         if @code_size < @max_code_size
-          @code_size     += 1
+          @code_size += 1
           @next_increase *= 2
 
           # warn "encode up to #{@code_size} for next_code #{@next_code} at #{@buf_pos}"
@@ -199,7 +195,7 @@ module LZW
       if @checkpoint.nil?
         @checkpoint = @buf_pos + CHECKPOINT_BITS
       elsif @buf_pos > @checkpoint
-        @ratio      = @bytes_in / (@buf_pos / 8)
+        @ratio = @bytes_in / (@buf_pos / 8)
         @last_ratio = @ratio if @last_ratio.nil?
 
         if @ratio >= @last_ratio
@@ -215,13 +211,10 @@ module LZW
         end
       end
     end
-
   end
-
 
   # Scaling LZW decompressor
   class Decompressor
-
     # Given a String(ish) of LZW-compressed data, return the decompressed data
     # as a String left in "ASCII-8BIT" encoding.
     #
@@ -231,7 +224,7 @@ module LZW
     def decompress(data)
       reset
 
-      @data     = LZW::BitBuf.new(field: data)
+      @data = LZW::BitBuf.new(field: data)
       @data_pos = 0
 
       read_magic(@data)
@@ -244,11 +237,11 @@ module LZW
       next_increase = 2**@code_size
 
       seen = read_code
-      @buf << @str_table[ seen ]
+      @buf << @str_table[seen]
 
       while (code = read_code)
 
-        if @block_mode and code == RESET_CODE
+        if @block_mode && code == RESET_CODE
           str_reset
 
           seen = read_code
@@ -258,12 +251,12 @@ module LZW
 
         if (word = @str_table.fetch(code, nil))
           @buf << word
-          
-          @str_table[@next_code] = @str_table[seen] + word[0,1]
+
+          @str_table[@next_code] = @str_table[seen] + word[0, 1]
 
         elsif code == @next_code
           word = @str_table[seen]
-          @str_table[code] = word + word[0,1]
+          @str_table[code] = word + word[0, 1]
 
           @buf << @str_table[code]
 
@@ -276,7 +269,7 @@ module LZW
 
         if @next_code >= next_increase
           if @code_size < @max_code_size
-            @code_size    += 1
+            @code_size += 1
             next_increase *= 2
             # warn "decode up to #{@code_size} for next #{@next_code} max #{@max_code_size} at #{data_pos}"
           end
@@ -291,7 +284,7 @@ module LZW
     # {#decompress}, so it's not necessary for reuse of an instance, but this
     # allows wiping the string code table and buffer from the object instance.
     def reset
-      @buf       = ''.b
+      @buf = "".b
       @str_table = []
     end
 
@@ -300,7 +293,7 @@ module LZW
     # Build up the initial string table, reset code size and next code.
     def str_reset
       @str_table = []
-      (0 .. 255).each do |i|
+      (0..255).each do |i|
         @str_table[i] = i.chr
       end
 
@@ -311,23 +304,23 @@ module LZW
     # Verify the two magic bytes at the beginning of the stream and read bit
     # and block data from the third.
     def read_magic(data)
-      magic = +''
-      (0 .. 2).each do |byte|
+      magic = +""
+      (0..2).each do |byte|
         magic << data.get_varint(byte * 8, 8).chr
       end
 
-      if magic.bytesize != 3 || magic[0,2] != MAGIC
-        fail InputStreamError, "Invalid compress(1) header " +
-          "(expected #{MAGIC.unpack('h*')}, got #{magic[0,2].unpack('h*')})"
+      if magic.bytesize != 3 || magic[0, 2] != MAGIC
+        fail InputStreamError, "Invalid compress(1) header " \
+          "(expected #{MAGIC.unpack("h*")}, got #{magic[0, 2].unpack("h*")})"
       end
 
-      bits           = magic.getbyte(2)
+      bits = magic.getbyte(2)
       @max_code_size = bits & MASK_BITS
-      @block_mode    = ( ( bits & MASK_BLOCK ) >> 7 ) == 1
+      @block_mode = ((bits & MASK_BLOCK) >> 7) == 1
     end
 
     def read_code
-      code       = @data.get_varint(@data_pos, @code_size)
+      code = @data.get_varint(@data_pos, @code_size)
       @data_pos += @code_size
       code
     end
@@ -360,7 +353,7 @@ module LZW
       11111011
       11111101
       11111110
-    ].map{|w| [w].pack('b8').getbyte(0) }.freeze
+    ].map { |w| [w].pack("b8").getbyte(0) }.freeze
 
     OR_BITMASK = %w[
       10000000
@@ -371,7 +364,7 @@ module LZW
       00000100
       00000010
       00000001
-    ].map{|w| [w].pack('b8').getbyte(0) }.freeze
+    ].map { |w| [w].pack("b8").getbyte(0) }.freeze
     private_constant :AND_BITMASK, :OR_BITMASK
 
     # If true, {#get_varint} and {#set_varint} work in MSB-first order.
@@ -388,12 +381,11 @@ module LZW
     # @param msb_first [Boolean] Optionally force bit order used when
     #   writing integers to the bitfield. Default false.
     def initialize(
-      field:      "\000",
-      msb_first:  false
+      field: "\000",
+      msb_first: false
     )
-
-      @field      = field.b
-      @msb_first  = msb_first
+      @field = field.b
+      @msb_first = msb_first
     end
 
     # Set a specific bit at pos to val. Trying to set a bit beyond the
@@ -444,7 +436,7 @@ module LZW
 
     # Returns the BitBuf as a text string of zeroes and ones.
     def to_s
-      @field.unpack('b*').first
+      @field.unpack1("b*")
     end
 
     # Returns the current bytesize of the BitBuf
@@ -462,7 +454,7 @@ module LZW
     # @param width [Numeric] Default 8. The desired size of the supplied
     #   integer. There is no overflow check.
     # @param val [Numeric] The integer value to be stored in the BitBuf.
-    def set_varint(pos, width = 8, val)
+    def set_varint(pos, width, val)
       fail ArgumentError, "integer overflow for #{width} bits: #{val}" \
         if val > 2**width
 
@@ -478,7 +470,7 @@ module LZW
     # returned.
     #
     # @return [Numeric, nil]
-    def get_varint(pos, width = 8)
+    def get_varint(pos, width)
       return nil if (pos + width) > bytesize * 8
 
       int = 0
@@ -501,7 +493,7 @@ module LZW
       byte, bit = pos.divmod(8)
 
       if byte > (bytesize - 1)
-        @field <<  "\000" * (byte - @field.bytesize + 1) 
+        @field << "\000" * (byte - @field.bytesize + 1)
       end
 
       [byte, bit]
@@ -511,5 +503,3 @@ module LZW
   # Exception class raised when compressed input is corrupt
   InputStreamError = Class.new(RuntimeError)
 end
-
-
