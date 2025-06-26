@@ -15,9 +15,9 @@ describe LZW::Decompressor do
     %w[decompress reset].each { |m| _(d).must_respond_to m }
   end
 
-  it "decompresses simple data" do
+  it "decompresses func interface result" do
     _(d.decompress(
-      LZW::Simple.new.compress(LOREM)
+      LZW.compress(LOREM)
     )).must_equal LOREM
   end
 
