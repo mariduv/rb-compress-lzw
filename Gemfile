@@ -1,8 +1,7 @@
 source "https://rubygems.org"
+gemspec
 
-group :development do
-  gem "standard", "~> 1.50", require: false
-  gem "yard", "~> 0.9.37", require: false
-  gem "rake", "~> 13.3", require: false
-  gem "minitest", "~> 5.25", require: false
-end
+gem "minitest", "~> 5.25"
+gem "rake", "~> 13.3"
+gem "standard", "~> 1.50"
+gem "yard", "~> 0.9.37"
